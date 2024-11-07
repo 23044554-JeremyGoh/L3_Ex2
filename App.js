@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Image, Button, Alert, ScrollView } from 'react-native';
 import RNPickerSelect from 'react-native-picker-select';
-import { FontAwesome } from '@expo/vector-icons'; // Make sure to use the correct import
+import { FontAwesome } from '@expo/vector-icons';
 
 // Custom component for each question
 const Question = ({ image, options, onChange }) => (
     <View style={styles.questionContainer}>
         <Image source={image} style={styles.image} />
-        <Text>What football club is this?</Text>
+        <Text style={styles.questionText}>What football club is this?</Text>
         <RNPickerSelect
             onValueChange={onChange}
             items={options.map(option => ({ label: option, value: option }))}
@@ -58,7 +58,9 @@ export default function App() {
                     options={['Arsenal', 'Barcelona', 'Chelsea']}
                     onChange={(value) => handleAnswerChange(2, value)}
                 />
-                <Button title="Submit Answers" onPress={handleSubmit} />
+                <View style={styles.buttonContainer}>
+                    <Button title="Submit Answers" onPress={handleSubmit} color="#1E90FF" />
+                </View>
             </ScrollView>
             <StatusBar style="auto" />
         </View>
@@ -68,7 +70,7 @@ export default function App() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
+        backgroundColor: '#f0f8ff',
         padding: 20,
     },
     header: {
@@ -79,17 +81,41 @@ const styles = StyleSheet.create({
         marginBottom: 20,
     },
     title: {
-        fontSize: 24,
+        fontSize: 35,
         fontWeight: 'bold',
-        marginRight: 10, // Add some space between the text and icon
+        marginRight: 10,
+        borderStyle: 'solid',
+        borderColor: '#1E90FF',
+        borderWidth: 2,
+        borderRadius: 12,
+        padding: 10,
+        color: '#1E90FF',
+        backgroundColor: '#f0f8ff',
     },
     questionContainer: {
         marginBottom: 30,
         alignItems: 'center',
+        borderStyle: 'solid',
+        borderColor: '#ccc',
+        borderRadius: 20,
+        borderWidth: 2,
+        backgroundColor: '#fff',
+        padding: 15,
+    },
+    questionText: {
+        fontSize: 18,
+        marginBottom: 10,
+        color: '#333',
+
     },
     image: {
         width: 200,
         height: 200,
         marginBottom: 10,
+    },
+    buttonContainer: {
+        marginTop: 20,
+        marginBottom: 50,
+        alignItems: 'center',
     },
 });
