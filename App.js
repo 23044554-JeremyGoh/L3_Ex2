@@ -12,6 +12,7 @@ const Question = ({ image, options, onChange }) => (
         <RNPickerSelect
             onValueChange={onChange}
             items={options.map(option => ({ label: option, value: option }))}
+            style={{ inputAndroid: styles.picker }}
         />
     </View>
 );
@@ -40,8 +41,10 @@ export default function App() {
         <View style={styles.container}>
             <ScrollView>
                 <View style={styles.header}>
-                    <Text style={styles.title}>Football Club Quiz</Text>
-                    <FontAwesome name="soccer-ball-o" size={30} color="black" />
+                    <View style={styles.titleContainer}>
+                        <Text style={styles.title}>Football Club Quiz</Text>
+                        <FontAwesome name="soccer-ball-o" size={30} color="white" style={styles.icon} />
+                    </View>
                 </View>
                 <Question
                     image={require('./img/Arsenal-Logo.png')}
@@ -74,44 +77,64 @@ const styles = StyleSheet.create({
         padding: 20,
     },
     header: {
+        alignItems: 'center',
+        marginTop: 50,
+        marginBottom: 20,
+    },
+    titleContainer: {
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
-        marginTop: 50,
-        marginBottom: 20,
+        backgroundColor: '#789DBC',
+        borderRadius: 12,
+        paddingVertical: 10,
+        paddingHorizontal: 20,
     },
     title: {
         fontSize: 35,
         fontWeight: 'bold',
+        color: 'white',
+        textAlign: 'center',
         marginRight: 10,
-        borderStyle: 'solid',
-        borderColor: '#1E90FF',
-        borderWidth: 2,
-        borderRadius: 12,
-        padding: 10,
-        color: '#1E90FF',
-        backgroundColor: '#f0f8ff',
+    },
+    icon: {
+        marginLeft: 10,
     },
     questionContainer: {
         marginBottom: 30,
         alignItems: 'center',
-        borderStyle: 'solid',
-        borderColor: '#ccc',
         borderRadius: 20,
         borderWidth: 2,
+        borderColor: '#ccc',
         backgroundColor: '#fff',
         padding: 15,
+        width: '90%',
+        alignSelf: 'center',
     },
     questionText: {
         fontSize: 18,
         marginBottom: 10,
         color: '#333',
-
+        textAlign: 'center',
+        fontWeight: 'bold',
     },
     image: {
-        width: 200,
-        height: 200,
+        width: 150,
+        height: 150,
+        resizeMode: 'contain',
         marginBottom: 10,
+    },
+    picker: {
+        fontSize: 16,
+        color: 'black',
+        paddingHorizontal: 10,
+        paddingVertical: 5,
+        borderColor: '#1E90FF',
+        borderWidth: 1,
+        borderRadius: 8,
+        width: '80%',
+        alignSelf: 'center',
+        textAlign: 'center',
     },
     buttonContainer: {
         marginTop: 20,
